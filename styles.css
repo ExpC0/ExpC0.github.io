@@ -110,12 +110,27 @@ strong { color: var(--text); font-weight: 650; }
 .hero__photo {
   position: relative;
   flex: none;
-  width: clamp(72px, 17vw, 112px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  width: clamp(82px, 21vw, 124px);
+  aspect-ratio: 4 / 5;          /* matches the crop in assets/profile.jpg */
+  border-radius: 16px;
   overflow: hidden;
   background: var(--surface-2);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 55%, transparent), var(--shadow);
+}
+
+/* On wide screens the portrait lifts out of the name row into its own
+   column on the right. It is absolutely positioned against .hero__inner,
+   so .hero__text reserves the space with padding-right. */
+@media (min-width: 860px) {
+  .hero__text { padding-right: 260px; }
+  .hero__photo {
+    position: absolute;
+    top: 50%;
+    right: clamp(16px, 5vw, 24px);
+    transform: translateY(-50%);
+    width: 208px;
+    border-radius: 20px;
+  }
 }
 .hero__photo-img {
   position: absolute; inset: 0;
@@ -298,4 +313,10 @@ strong { color: var(--text); font-weight: 650; }
   .contact__actions .btn { text-align: center; padding: 13px 20px; }
 
   .footer__inner { flex-direction: column; text-align: center; gap: 4px; }
+}
+
+/* Very narrow phones: shrink the name so it doesn't break into three
+   lines alongside the portrait. */
+@media (max-width: 400px) {
+  .hero__name { font-size: clamp(1.85rem, 9.5vw, 2.4rem); }
 }
