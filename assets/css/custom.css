@@ -1,0 +1,382 @@
+/* ============================================================
+   Md Raduan Islam Rian — custom theme
+   Loaded after main.css. Overrides the stock look: dark slate
+   palette, mono accents, top navigation bar, card-based sections.
+   ============================================================ */
+
+:root {
+  --default-font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heading-font: "Space Grotesk", "Inter", sans-serif;
+  --nav-font: "Space Grotesk", "Inter", sans-serif;
+  --mono-font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --background-color: #0b1018;
+  --default-color: #b9c6d6;
+  --heading-color: #f2f6fb;
+  --accent-color: #22d3a5;
+  --accent-soft: #7c8cff;
+  --surface-color: #121a26;
+  --surface-2: #182231;
+  --border-color: #22303f;
+  --contrast-color: #04120d;
+
+  --nav-color: #93a3b8;
+  --nav-hover-color: #ffffff;
+  --nav-mobile-background-color: #0b1018;
+  --nav-dropdown-background-color: #0b1018;
+  --nav-dropdown-color: #93a3b8;
+  --nav-dropdown-hover-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--default-color);
+  font-family: var(--default-font);
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font); color: var(--heading-color); }
+
+a { color: var(--accent-color); }
+a:hover { color: var(--accent-soft); }
+
+section { background-color: var(--background-color) !important; }
+
+/* ---------- Section titles: mono counter + gradient rule ---------- */
+main.main { counter-reset: sec; }
+
+.section-title { counter-increment: sec; padding-bottom: 4px; }
+
+.section-title h2 {
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--heading-color);
+  padding-bottom: 16px;
+}
+
+.section-title h2::before {
+  content: counter(sec, decimal-leading-zero) " —— ";
+  font-family: var(--mono-font);
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+.section-title h2::after {
+  width: 100%;
+  max-width: 220px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+}
+
+/* ---------- Header: top bar on desktop ---------- */
+/* NOTE: backdrop-filter is deliberately confined to the desktop rule below.
+   It creates a containing block, which would trap the position:fixed
+   .header-toggle inside the off-canvas drawer on mobile and hide it. */
+.header {
+  background-color: var(--background-color);
+  border-right: 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--default-color);
+}
+
+.header .sitename {
+  font-family: var(--heading-font);
+  color: var(--heading-color);
+  letter-spacing: -0.4px;
+}
+
+.header .profile-img img {
+  border-radius: 14px !important;
+  border: 2px solid color-mix(in srgb, var(--accent-color) 55%, transparent);
+}
+
+.header .social-links a {
+  background: var(--surface-2);
+  color: var(--default-color);
+  border: 1px solid var(--border-color);
+}
+.header .social-links a:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--accent-color);
+}
+
+.navmenu a, .navmenu a:focus { font-family: var(--nav-font); color: var(--nav-color); }
+.navmenu a:hover, .navmenu .active, .navmenu .active:focus { color: var(--accent-color); }
+.navmenu a .navicon { color: inherit; }
+
+@media (min-width: 1200px) {
+  .header {
+    background-color: color-mix(in srgb, var(--background-color) 88%, transparent);
+    backdrop-filter: blur(12px);
+    flex-direction: row !important;
+    align-items: center;
+    width: 100%;
+    height: 68px;
+    bottom: auto;
+    padding: 0 clamp(18px, 3vw, 40px);
+    overflow: visible;
+    gap: 14px;
+  }
+
+  .header .profile-img { order: 1; margin: 0; }
+  .header .profile-img img { width: 40px; margin: 0; display: block; }
+
+  .header .logo { order: 2; margin: 0 auto 0 0; padding: 0; }
+  .header .sitename { font-size: 17px; margin: 0; white-space: nowrap; }
+
+  .header #navmenu { order: 3; }
+  .header .navmenu ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+  .header .navmenu li { margin: 0; }
+  .header .navmenu a {
+    padding: 8px 11px;
+    font-size: 13.5px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .header .navmenu a:hover { background: var(--surface-2); }
+  /* Icons are noise in a horizontal bar. */
+  .header .navmenu a .navicon { display: none; }
+
+  /* Last item ("Download Resume") reads as a button. */
+  .header .navmenu li:last-child a {
+    border: 1px solid color-mix(in srgb, var(--accent-color) 55%, transparent);
+    color: var(--accent-color);
+    margin-left: 6px;
+  }
+  .header .navmenu li:last-child a:hover {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .header .social-links { order: 4; margin: 0; padding: 0; }
+  .header .social-links a { width: 32px; height: 32px; line-height: 32px; font-size: 14px; }
+
+  .header~main, .header~#footer { margin-left: 0 !important; margin-top: 68px; }
+}
+
+/* Below 1200px the template's off-canvas drawer is kept; just re-skin it. */
+@media (max-width: 1199px) {
+  .header { background-color: var(--background-color); }
+  .header .header-toggle {
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+    border-radius: 12px;
+  }
+  .header .header-toggle:hover { background-color: var(--accent-soft); }
+}
+
+/* ---------- Hero ---------- */
+.hero { text-align: left; min-height: min(100vh, 780px); }
+
+/* Drop the stock stock-photo backdrop for a generated one. */
+.hero > img { display: none !important; }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 60% at 12% 8%, color-mix(in srgb, var(--accent-color) 16%, transparent), transparent 62%),
+    radial-gradient(50% 55% at 92% 20%, color-mix(in srgb, var(--accent-soft) 14%, transparent), transparent 60%),
+    linear-gradient(180deg, #0b1018, #0d1420);
+}
+
+/* Faint engineering grid — nods at the networking/embedded work. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  mask-image: radial-gradient(70% 60% at 30% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(70% 60% at 30% 40%, #000 30%, transparent 75%);
+}
+
+.hero .container { position: relative; z-index: 3; }
+
+.hero p:first-of-type {
+  font-family: var(--mono-font);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 6px;
+}
+
+.hero h2 {
+  font-size: clamp(34px, 6.4vw, 68px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: var(--heading-color);
+  margin: 8px 0 14px !important;
+}
+.hero h2 span { color: var(--accent-color); }
+
+.hero p { color: var(--default-color); font-size: clamp(16px, 2.2vw, 21px); }
+.hero .typed { color: var(--heading-color); font-family: var(--mono-font); font-size: 0.92em; }
+.hero .typed-cursor { color: var(--accent-color); }
+
+.hero .cta-button {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-weight: 600;
+  font-family: var(--heading-font);
+  margin-top: 26px;
+  display: inline-block;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero .cta-button:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--accent-color) 30%, transparent);
+}
+
+/* ---------- About ---------- */
+.about p { color: var(--default-color); line-height: 1.85; }
+.about strong { color: var(--heading-color); }
+
+/* ---------- Resume / experience / education / projects / achievements ---------- */
+.resume .resume-item {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.resume .resume-item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-color) 45%, var(--border-color));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
+}
+
+/* The stock timeline dots belong to the old look. */
+.resume .resume-item::before { display: none !important; }
+
+.resume .resume-item h3 {
+  color: var(--heading-color);
+  font-size: 19px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.resume .resume-item h4 {
+  font-size: 15px;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding: 0;
+}
+.resume .resume-item h4 a { color: var(--accent-color); }
+.resume .resume-item h5 {
+  font-family: var(--mono-font);
+  font-size: 12.5px;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  background: none;
+  padding: 0 0 10px;
+  display: block;
+}
+.resume .resume-item ul { color: var(--default-color); }
+.resume .resume-item ul li { margin-bottom: 7px; }
+.resume .resume-item p { color: var(--default-color); }
+.resume .resume-item strong { color: var(--heading-color); }
+
+/* ---------- Skills ---------- */
+.skills .progress { height: auto; margin-bottom: 20px; }
+
+.skills .progress .skill {
+  color: var(--heading-color);
+  font-family: var(--mono-font);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+.skills .progress .skill .val { color: var(--accent-color); font-style: normal; }
+
+.skills .progress-bar-wrap {
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+.skills .progress-bar {
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-soft));
+  height: 8px;
+  border-radius: 999px;
+}
+
+/* ---------- Contact ---------- */
+.contact .info-wrap {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 22px;
+  height: 100%;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.contact .info-wrap:hover {
+  border-color: color-mix(in srgb, var(--accent-color) 45%, var(--border-color));
+  transform: translateY(-3px);
+}
+.contact .info-item i {
+  background: color-mix(in srgb, var(--accent-color) 14%, transparent);
+  color: var(--accent-color);
+  border: 0;
+  font-size: 18px;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 12px;
+  text-align: center;
+  margin-right: 14px;
+}
+.contact .info-item h3 {
+  font-family: var(--mono-font);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  margin-bottom: 4px;
+}
+.contact .info-item p { color: var(--heading-color); font-size: 15px; margin: 0; word-break: break-word; }
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--default-color);
+  padding: 26px 0;
+}
+.footer .copyright p { margin-bottom: 6px; }
+.footer .credits { font-size: 12px; color: color-mix(in srgb, var(--default-color), transparent 45%); }
+
+/* ---------- Misc chrome ---------- */
+.scroll-top {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 12px;
+}
+.scroll-top:hover { background: var(--accent-soft); color: var(--contrast-color); }
+
+#preloader { background-color: var(--background-color); }
+#preloader:before { border-color: var(--accent-color) transparent var(--accent-color) transparent; }
