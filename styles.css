@@ -179,7 +179,8 @@ strong { color: var(--text); font-weight: 650; }
 .timeline__head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between; }
 .timeline__head h3 { margin: 0; font-size: 1.15rem; }
 .timeline__date { color: var(--muted); font-size: .86rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.timeline__org { color: var(--accent); font-weight: 600; margin: 2px 0 10px; font-size: .95rem; }
+.timeline__org { color: var(--accent); font-weight: 600; margin: 2px 0 2px; font-size: .95rem; }
+.timeline__place { color: var(--muted); font-size: .86rem; margin: 0 0 12px; }
 .timeline__points { margin: 0; padding-left: 18px; color: var(--muted); }
 .timeline__points li { margin: 4px 0; }
 .chip {
