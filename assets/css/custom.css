@@ -330,13 +330,28 @@ main.main { counter-reset: sec; }
   background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: 14px;
-  padding: 22px;
+  padding: 20px;
   height: 100%;
+  /* Equal-height cards stretch to the tallest (Location wraps to two lines).
+     Centring stops the shorter ones leaving a dead gap under their text. */
+  display: flex;
+  align-items: center;
   transition: border-color .2s ease, transform .2s ease;
 }
 .contact .info-wrap:hover {
   border-color: color-mix(in srgb, var(--accent-color) 45%, var(--border-color));
   transform: translateY(-3px);
+}
+.contact .info-item {
+  /* Centres the icon against the label + value block rather than letting it
+     sit level with the label alone. */
+  align-items: center;
+  width: 100%;
+  /* The template stacks these in one column and spaces them with a 40px
+     bottom margin. Here each sits alone in a card, so the margin is dead
+     weight — and because flex centring centres the *margin box*, it also
+     pushed the visible content 20px above centre. */
+  margin-bottom: 0;
 }
 .contact .info-item i {
   background: color-mix(in srgb, var(--accent-color) 14%, transparent);
