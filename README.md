@@ -1,32 +1,30 @@
 # ExpC0.github.io
 
-Personal portfolio of **Md Raduan Islam Rian** — R&D Engineer (Networking &
-Embedded Systems) at Shanghai BDCOM.
+Personal portfolio of **Md Raduan Islam Rian** — Software Engineer building
+mobile, web, backend and systems software.
 
 🔗 **Live site:** https://expc0.github.io
 
 ## Stack
 
-Plain, dependency-free **HTML + CSS + a little JavaScript**, hosted on
-**GitHub Pages**. No build step, no framework.
+Static **HTML, CSS and JavaScript**, hosted on **GitHub Pages** with no build
+step or framework dependency.
 
 | File | Purpose |
 |---|---|
 | `index.html` | Page content and structure |
-| `styles.css` | Styling (dark-first, light-mode aware, responsive) |
-| `script.js` | Mobile nav, footer year, scroll-reveal |
+| `assets/css/custom.css` | Portfolio theme, project showcases and responsive styling |
+| `assets/css/main.css` | Base template styling |
+| `assets/js/main.js` | Navigation, animation and interaction behaviour |
+| `assets/img/projects/` | Optimized project preview images |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is (skip Jekyll) |
 
 ## Editing
 
 Just edit the files and push to `main` — GitHub Pages redeploys automatically.
 
-### Things you may want to update
-
-- **LinkedIn URL** — `index.html` currently links to `https://www.linkedin.com/`
-  as a placeholder (search for `TODO`). Replace it with your real profile URL.
-- **Experience start date** — the BDCOM role shows `2025 — Present`; adjust if needed.
-- Add new projects by copying a `<article class="card">…</article>` block.
+Project content lives in the `#projects` section of `index.html`. Keep preview
+images compressed and remove metadata before publishing them.
 
 ## Local preview
 
