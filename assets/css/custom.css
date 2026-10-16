@@ -219,6 +219,14 @@ main.main { counter-reset: sec; }
   max-width: 360px;
   margin: 0 0 30px;
 }
+.hero-experience { border-top: 1px solid var(--border-color); padding-top: 20px; margin-bottom: 28px; }
+.hero .hero-experience-label { font: 10px/1.8 var(--mono-font); letter-spacing: 1.5px; color: var(--default-color); margin: 0 0 16px; }
+.hero-role + .hero-role { margin-top: 16px; }
+.hero .hero-role h3 { font: 500 15px/1.5 var(--heading-font); margin: 0 0 4px; color: var(--heading-color); }
+.hero .hero-role h3 span { font-weight: 400; color: var(--default-color); }
+.hero .hero-role p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 14px; font: 12px/1.7 var(--default-font); color: var(--default-color); margin: 0; }
+.hero .hero-role p span { font-size: 11px; letter-spacing: 0; border: 0; color: var(--default-color); }
+.hero-experience-link { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; margin-top: 16px; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .hero-actions a { display: inline-flex; align-items: center; gap: 18px; font-size: 13px; font-weight: 600; }
 .hero-primary {
